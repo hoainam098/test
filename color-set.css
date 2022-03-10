@@ -1,13 +1,22 @@
-.cyan {
-    color: cyan;
+
+#gameScreen {
+    width: 500px;
+    height: 700px;
+    position: absolute;
+    border-style: outset;
+    border-color: red;
+    background-color: antiquewhite;
 }
-.red {
-    color: firebrick;
+#ball {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-color: red;
+    border-radius: 50%;
 }
-.blue {
-    color: cornflowerblue;
-}
-.nhung {
-    text-align: center;
-    color: hotpink;
+#bar{
+    width: 200px;
+    height: 20px;
+    position: absolute;
+    background-color: darkgreen;
 }
