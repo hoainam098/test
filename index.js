@@ -6,11 +6,15 @@ document.addEventListener('DOMContentLoaded',() =>{
 
     let gameWidth = 500;
     let gameheight = 700;
+    let gameRootpoint = 0;
 
     let barY = 680;//680
-    let barX = random(400);//190
-    let barWidth = 200;
+    let barX = 0;//190
+    let barWidth = 100;
     let barHeight = 20;
+    let barSpeed = 5;
+    let barTime = 40;
+    let barReturn = false;
 
     let ballX = random(470);//random
     let ballY = 0;//0
@@ -23,10 +27,30 @@ document.addEventListener('DOMContentLoaded',() =>{
 
     let reset = 0;
 
-    let timerId = setInterval(startGame,ballSpeed)
-    console.log('Speed',ballSpeed)
 
 
+
+
+    function moveBar() {
+        let barXLocate = parseInt(bar.style.left);
+
+        console.log('barXlocate',barXLocate)
+
+        if (!barReturn){
+            bar.style.left = barXLocate  + barSpeed + 'px'
+        } else {
+            bar.style.left = barXLocate  - barSpeed + 'px'
+        }
+
+        if (barXLocate + barWidth > gameWidth ){
+            // clearOP()
+            barReturn = true
+        } else if (barXLocate < gameRootpoint){
+            barReturn = false
+        }
+
+    }
+    let barID = setInterval(moveBar,barTime)
 
     function barLocate() {
         bar.style.left = barX +'px'
@@ -35,16 +59,22 @@ document.addEventListener('DOMContentLoaded',() =>{
     } barLocate()
 
     function startGame() {
+
         ball.style.left = ballX + 'px'
         ballY += drop
         ball.style.top = ballY + 'px'
         dropBall()
     }
 
+    let timerId = setInterval(startGame,ballSpeed)
+    console.log('Speed',ballSpeed)
+
+
     if ((ballX+ballRadius>barX) &&
         (ballX < barX + barWidth)
     ) {
         isColision=true
+        dropBall()
     }
     console.log('isColision1',isColision)
 
@@ -54,9 +84,11 @@ document.addEventListener('DOMContentLoaded',() =>{
                 endGame()
             }
         } else  if (ballY === gameheight-ballRadius-barHeight) {
+            endGame()
             reDrop()
         }
     }
+
 
     function reDrop() {
         isColision = false
@@ -68,11 +100,12 @@ document.addEventListener('DOMContentLoaded',() =>{
         ) {
             isColision=true
             console.log('Re-speed',ballSpeed)
+
             setInterval(startGame,ballSpeed)
-        } else if (ballY === gameheight-ballRadius) {
-                endGame()
-            }
-    console.log('Re-Colision',isColision)
+        } else {
+            clearInterval(timerId)
+        }
+        console.log('Re-Colision',isColision)
     }
 
 
@@ -80,12 +113,10 @@ document.addEventListener('DOMContentLoaded',() =>{
         return Math.floor(Math.random() * randomx) + 1;
     }
 
-
-
     function endGame() {
         clearInterval(timerId)
-         isGameover = true
-         console.log("gameOver")
-     }
+        isGameover = true
+        console.log("gameOver")
+    }
 })
 

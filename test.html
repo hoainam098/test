@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        #tScreen{
+            width: 600px;
+            height: 700px;
+            position: absolute;
+            border-style: solid;
+            border-color: red;
+        }
+        #tOpject{
+            width: 100px;
+            height: 20px;
+            position: relative;
+            background-color: navy;
+        }
+    </style>
+</head>
+<body>
+<div id="tScreen">
+    <div id="tOpject"></div>
+</div>
+</body>
+</html>
+<script>
+    let screen = document.getElementById('tScreen');
+    let test = document.getElementById('tOpject');
+
+    let opY = 680;
+    let opX = 0;
+    let opSpeed = 10;
+    let opWidth = 100;
+    let opTime = 30;
+    let opReturn = false;
+
+    let tScreenWidth = 600;
+
+    let keyDown = false;
+
+
+    function opLocation () {
+        test.style.top = opY + 'px'
+        test.style.left = opX + 'px'
+    } opLocation()
+
+    function moveOP() {
+        let opXlocate = parseInt(test.style.left);
+
+        console.log('opXlocate',opXlocate)
+
+        if (!opReturn){
+            test.style.left = opXlocate  + opSpeed + 'px'
+        } else {
+            test.style.left = opXlocate  - opSpeed + 'px'
+        }
+
+        if (opXlocate + opWidth === tScreenWidth ){
+            // clearOP()
+            opReturn = true
+        } else if (opXlocate < 0){
+            opReturn = false
+        }
+    }
+
+    function keydownSpace(e) {
+
+        if (e.keyCode === 32){
+            keyDown = true
+            clearOP()
+            // function keyTimeout () {
+            //     keyDown = false
+            // }
+            // setTimeout(keyTimeout,100)
+        }
+
+
+        // if (!keyDown){
+        //     // opSpeed = 30
+        // }
+        // keyDown = false
+
+        console.log('STOP',keyDown)
+    } document.addEventListener('keyup',keydownSpace)
+
+    function keyupSpace(e) {
+        if (e.keyCode === 32) {
+            setInterval(moveOP,opTime)
+        }
+    } document.addEventListener('keyup',keyupSpace)
+
+    let opID = setInterval(moveOP,opTime)
+//when hold SpaceBar "stop" and start move again
+
+    function clearOP() {
+        clearInterval(opID)
+
+    }
+
+
+
+
+</script>
