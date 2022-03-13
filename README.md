@@ -16,5 +16,5 @@
        theo lớp khá nhiều, nhưng dẫu sao thì cũng có ae quan tâm nên đến hôm nay e vẫn tiếp tục học.
             Và lời cuối, e xin gửi lời tri ân đến mọi người. chúc mn sớm thành công. Và chính bản thân e còn
             kém cỏi nhưng sẽ nỗ lực hơn để cải thiện. 
-            Rất mong được gặp lại mọi người trong tương lai.
-        
+            Rất mong được gặp lại mọi người trong tương lai."
+      
