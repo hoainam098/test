@@ -39,6 +39,7 @@
     let tScreenWidth = 600;
 
     let keyDown = false;
+    let opID;
 
 
     function opLocation () {
@@ -66,32 +67,15 @@
     }
 
     function keydownSpace(e) {
-
-        if (e.keyCode === 32){
-            keyDown = true
+        if (e.keyCode === 32 && keyDown){
             clearOP()
-            // function keyTimeout () {
-            //     keyDown = false
-            // }
-            // setTimeout(keyTimeout,100)
+        } else {
+            opID = setInterval(moveOP,opTime)
         }
-
-
-        // if (!keyDown){
-        //     // opSpeed = 30
-        // }
-        // keyDown = false
-
+        keyDown = !keyDown
         console.log('STOP',keyDown)
     } document.addEventListener('keyup',keydownSpace)
 
-    function keyupSpace(e) {
-        if (e.keyCode === 32) {
-            setInterval(moveOP,opTime)
-        }
-    } document.addEventListener('keyup',keyupSpace)
-
-    let opID = setInterval(moveOP,opTime)
 //when hold SpaceBar "stop" and start move again
 
     function clearOP() {
